@@ -11,7 +11,6 @@ function customStore(reducer) {
 
 	function dispatch(actions) {
 		state = reducer(state, actions);
-
 		for (let i = 0; i < listeners.length; i++) {
 			listeners[i]();
 		}
