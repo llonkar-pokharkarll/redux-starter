@@ -1,11 +1,11 @@
-import { createAction,createReducer, createSlice } from "@reduxjs/toolkit";
-import { createSelector } from "reselect";
+import { createAction, createReducer, createSlice } from '@reduxjs/toolkit';
+import { createSelector } from 'reselect';
 
 // actionCreators
 // export const bugAdded = createAction("bugAdded");
-// 
+//
 // export const bugRemoved = createAction("bugRemoved");
-// 
+//
 // export const bugResolved = createAction("bugResolved");
 
 //reducer
@@ -32,29 +32,27 @@ let id_Count = 0;
 //   }
 // };
 const slice = createSlice({
-  name: "bugs",
-  initialState: [],
-  reducers:{
-    bugAdded:(bugs, action) => {
-    bugs.push({
-      id: ++id_Count,
-      description: action.payload.description,
-      resolved: false,
-      assigned:'',
-      });
-    },
-    bugResolved: (bugs,action) => {
-      const index = bugs.findIndex((bug) => bug.id !== action.payload.id);
-      bugs[index].resolved = true;
-    },
-    bugAssigned: (bugs,action) => {
-      const index = bugs.findIndex((bug) => bug.id === action.payload.id);
-      bugs[index].assigned = action.payload.assigned; 
-    }
-  }
-}
-);
-
+	name: 'bugs',
+	initialState: [],
+	reducers: {
+		bugAdded: (bugs, action) => {
+			bugs.push({
+				id: ++id_Count,
+				description: action.payload.description,
+				resolved: false,
+				assigned: '',
+			});
+		},
+		bugResolved: (bugs, action) => {
+			const index = bugs.findIndex((bug) => bug.id !== action.payload.id);
+			bugs[index].resolved = true;
+		},
+		bugAssigned: (bugs, action) => {
+			const index = bugs.findIndex((bug) => bug.id === action.payload.id);
+			bugs[index].assigned = action.payload.assigned;
+		},
+	},
+});
 
 // const reducer = createReducer([],{
 //   [bugAdded.type] : (bugs,action) => {
@@ -74,6 +72,6 @@ export default slice.reducer;
 
 //selector && memoization
 export const unResolvedBugs = createSelector(
-  state => state,
-  bugs => bugs.filter(bug => !bug.resolved),
+	(state) => state,
+	(bugs) => bugs.filter((bug) => !bug.resolved),
 );

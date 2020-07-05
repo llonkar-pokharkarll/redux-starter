@@ -24,7 +24,7 @@ store.dispatch(bugAssigned({id:3,assigned:"GP"}));
   // });
   // unsubscribe();
   // store.dispatch(bugRemoved(1));
-  
+
   // console.log('%cSTORE_CHANGED', 'color: blue; font-size:15px;', store.getState());
   console.log('%cGET_STATE', 'color: blue; font-size:15px;', store.getState());
 
