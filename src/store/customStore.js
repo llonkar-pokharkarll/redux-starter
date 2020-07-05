@@ -1,33 +1,30 @@
-import  reducer  from "./reducer";
-import * as actions from "./actions";
+import reducer from './reducer';
+import * as actions from './actions';
 
 function customStore(reducer) {
-  let state;
-  let listeners = [];
+	let state;
+	let listeners = [];
 
-  function subscribe(listener) {
-    listeners.push(listener);
-  }
+	function subscribe(listener) {
+		listeners.push(listener);
+	}
 
-  function dispatch(actions) {
-    state = reducer(state, actions);
+	function dispatch(actions) {
+		state = reducer(state, actions);
+		for (let i = 0; i < listeners.length; i++) {
+			listeners[i]();
+		}
+	}
 
-    for (let i = 0; i < listeners.length; i++) {
-      listeners[i]();
+	function getState() {
+		return state;
+	}
 
-    }
-  }
-
-  function getState() {
-    return state;
-  }
-
-
-  return {
-    dispatch,
-    getState,
-    subscribe
-  };
+	return {
+		dispatch,
+		getState,
+		subscribe,
+	};
 }
 
 export default customStore(reducer);
